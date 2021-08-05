@@ -4,11 +4,13 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 // instantiate express app object
 const app = express();
+const employeeController = require('./controllers/employees');
 
 // middleware - using built in packages since we're going to be making requests via AJAX to the server
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use('/employees', employeeController);
 
 app.set('port', process.env.PORT || 8000);
 
