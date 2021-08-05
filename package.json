@@ -1,0 +1,31 @@
+{
+	"name": "employee-directory-backend",
+	"version": "1.0.0",
+	"description": "Full Stack Engineer Code Challenge",
+	"main": "index.js",
+	"dependencies": {
+		"cors": "^2.8.5",
+		"dotenv": "^10.0.0",
+		"express": "^4.17.1",
+		"mongoose": "^5.13.5"
+	},
+	"devDependencies": {
+		"nodemon": "^2.0.12"
+	},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "node index.js",
+		"dev": "nodemon index.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/kccrtv/employee-directory-backend.git"
+	},
+	"keywords": [],
+	"author": "Kimberly Cinco",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/kccrtv/employee-directory-backend/issues"
+	},
+	"homepage": "https://github.com/kccrtv/employee-directory-backend#readme"
+}
