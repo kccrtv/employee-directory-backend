@@ -7,7 +7,7 @@ const {
 const router = express.Router();
 
 // INDEX
-// GET api/employees
+// GET /employees
 router.get('/', (req, res, next) => {
 	Employee.find()
 		.then((employees) => res.json(employees))
@@ -15,17 +15,9 @@ router.get('/', (req, res, next) => {
 });
 
 // SHOW
-// GET api/employees/idnumber
+// GET /employees/idnumber
 router.get('/:id', handleValidateId, (req, res, next) => {
 	Employee.findById(req.params.id)
-		// .then((employee) => res.json(employee));
-		// .then((employee) => {
-		// 	if (!employee) {
-		// 		res.sendStatus(404);
-		// 	} else {
-		// 		res.json(employee);
-		// 	}
-		// })
 		.then(handleRecordExists)
 		.then((employee) => {
 			res.json(employee);
@@ -34,7 +26,7 @@ router.get('/:id', handleValidateId, (req, res, next) => {
 });
 
 // CREATE
-// POST api/employees
+// POST /employees
 router.post('/', (req, res, next) => {
 	Employee.create(req.body)
 		.then((employee) => {
@@ -44,19 +36,11 @@ router.post('/', (req, res, next) => {
 });
 
 // UPDATE
-// PUT api/employees/idnumber
+// PUT /employees/idnumber
 router.put('/:id', handleValidateId, (req, res, next) => {
 	Employee.findOneAndUpdate({ _id: req.params.id }, req.body, {
 		new: true,
 	})
-		// .then((employee) => res.json(employee));
-		// .then((employee) => {
-		// 	if (!employee) {
-		// 		res.sendStatus(404);
-		// 	} else {
-		// 		res.json(employee);
-		// 	}
-		// })
 		.then(handleRecordExists)
 		.then((employee) => {
 			res.json(employee);
@@ -65,19 +49,11 @@ router.put('/:id', handleValidateId, (req, res, next) => {
 });
 
 // DESTROY
-// DELETE api/employees/idnumber
+// DELETE /employees/idnumber
 router.delete('/:id', handleValidateId, (req, res, next) => {
 	Employee.findOneAndDelete({
 		_id: req.params.id,
 	})
-		// .then(() => res.sendStatus(204));
-		// .then((employee) => {
-		// 	if (!employee) {
-		// 		res.sendStatus(404);
-		// 	} else {
-		// 		res.sendStatus(204);
-		// 	}
-		// })
 		.then(handleRecordExists)
 		.then((employee) => {
 			res.sendStatus(204);

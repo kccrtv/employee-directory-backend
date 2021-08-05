@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 // instantiate express app object
 const app = express();
+const userController = require('./controllers/users');
 const employeeController = require('./controllers/employees');
 const {
 	handleErrors,
@@ -14,6 +15,7 @@ const {
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use('/', userController);
 app.use('/employees', employeeController);
 
 app.set('port', process.env.PORT || 8000);
