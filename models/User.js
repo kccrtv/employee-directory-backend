@@ -21,6 +21,7 @@ const userSchema = new mongoose.Schema(
 				return ret;
 			},
 		},
+		id: false,
 	}
 );
 
