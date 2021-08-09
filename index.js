@@ -10,19 +10,25 @@ const {
 	handleErrors,
 	handleValidationErrors,
 } = require('./middleware/custom_errors');
+const port = process.env.PORT || 3111;
 
 // middleware - using built in packages since we're going to be making requests via AJAX to the server
-app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use('/', userController);
-app.use('/employees', employeeController);
+app.use(cors());
+
+// app.use('/', userController);
+app.use('/', employeeController);
 
 app.set('port', process.env.PORT || 8000);
 
 app.use(handleValidationErrors);
 app.use(handleErrors);
 
-app.listen(app.get('port'), () => {
-	console.log(`PORT: ${app.get('port')} ✨`);
+// app.listen(app.get('port'), () => {
+// 	console.log(`PORT: ${app.get('port')} ✨`);
+// });
+
+app.listen(port, () => {
+	console.log('🚔 on port ' + port);
 });

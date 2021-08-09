@@ -2,10 +2,12 @@
 const mongoose = require('mongoose');
 
 // store environment variable to set in production, otherwise use the db on local machine
+const dbName = 'employee-directory';
+
 const mongoURI =
 	process.env.NODE_ENV === 'production'
-		? process.env.MONGODB_URI
-		: 'mongodb://localhost/employee-directory';
+		? process.env.DB_URL
+		: 'mongodb://localhost/' + dbName;
 
 // add options for the connection as object in second arg, replace local db address with db URI
 mongoose
@@ -18,7 +20,7 @@ mongoose
 	.then((instance) =>
 		console.log(`Connected to db: ${instance.connections[0].name}`)
 	)
-	.catch((error) => console.log('Connection failed!', error));
+	.catch((error) => console.log(error));
 
 //export connection to use in app elsewhere
 
