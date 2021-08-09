@@ -8,7 +8,7 @@ const router = express.Router();
 
 // INDEX
 // GET /employees
-router.get('/', (req, res, next) => {
+router.get('/employees', (req, res, next) => {
 	Employee.find()
 		.then((employees) => res.json(employees))
 		.catch(next);
@@ -16,7 +16,7 @@ router.get('/', (req, res, next) => {
 
 // SHOW
 // GET /employees/idnumber
-router.get('/:id', handleValidateId, (req, res, next) => {
+router.get('/employees/:id', handleValidateId, (req, res, next) => {
 	Employee.findById(req.params.id)
 		.then(handleRecordExists)
 		.then((employee) => {
@@ -27,7 +27,7 @@ router.get('/:id', handleValidateId, (req, res, next) => {
 
 // CREATE
 // POST /employees
-router.post('/', (req, res, next) => {
+router.post('/employees', (req, res, next) => {
 	Employee.create(req.body)
 		.then((employee) => {
 			res.status(201).json(employee);
@@ -37,7 +37,7 @@ router.post('/', (req, res, next) => {
 
 // UPDATE
 // PUT /employees/idnumber
-router.put('/:id', handleValidateId, (req, res, next) => {
+router.put('/employees/:id', handleValidateId, (req, res, next) => {
 	Employee.findOneAndUpdate({ _id: req.params.id }, req.body, {
 		new: true,
 	})
@@ -50,7 +50,7 @@ router.put('/:id', handleValidateId, (req, res, next) => {
 
 // DESTROY
 // DELETE /employees/idnumber
-router.delete('/:id', handleValidateId, (req, res, next) => {
+router.delete('/employees/:id', handleValidateId, (req, res, next) => {
 	Employee.findOneAndDelete({
 		_id: req.params.id,
 	})
