@@ -1,16 +1,16 @@
 // importing mongoose to interface with mongoDB
 const mongoose = require('mongoose');
-// const URI = process.env.URI;
+const URI = process.env.URI;
 // store environment variable to set in production, otherwise use the db on local machine
-const { MongoClient } = require('mongodb');
-const PASSWORD = process.env.PASSWORD;
-const uri = `mongodb+srv://user-me:${PASSWORD}@cluster0.mvgel.mongodb.net/employee-directory?retryWrites=true&w=majority`;
+// const { MongoClient } = require('mongodb');
+// const PASSWORD = process.env.PASSWORD;
+// const uri = `mongodb+srv://user-me:${PASSWORD}@cluster0.mvgel.mongodb.net/employee-directory?retryWrites=true&w=majority`;
 const dbName = 'employee-directory';
 
 const mongoURI =
 	process.env.NODE_ENV === 'production'
-		? `${URI}/employees`
-		: `mongodb://localhost/${dbName}/employees`;
+		? `${URI}`
+		: `mongodb://localhost/${dbName}`;
 
 // const mongoURI =
 // 	process.env.NODE_ENV === 'production'
@@ -20,26 +20,26 @@ const mongoURI =
 
 // add options for the connection as object in second arg, replace local db address with db URI
 
-const client = new MongoClient(uri, {
-	useNewUrlParser: true,
-	useUnifiedTopology: true,
-});
-client.connect((err) => {
-	const collection = client.db('test').collection('devices');
-	// perform actions on the collection object
-	client.close();
-});
+// const client = new MongoClient(uri, {
+// 	useNewUrlParser: true,
+// 	useUnifiedTopology: true,
+// });
+// client.connect((err) => {
+// 	const collection = client.db('test').collection('devices');
+// 	// perform actions on the collection object
+// 	client.close();
+// });
 
-// mongoose
-// 	.connect(mongoURI, {
-// 		useNewUrlParser: true,
-// 		useCreateIndex: true,
-// 		useUnifiedTopology: true,
-// 		useFindAndModify: false,
-// 	})
-// 	.then((instance) =>
-// 		console.log(`Connected to db: ${instance.connections[0].name}`)
-// 	)
-// 	.catch((error) => console.log(error));
+mongoose
+	.connect(mongoURI, {
+		useNewUrlParser: true,
+		useCreateIndex: true,
+		useUnifiedTopology: true,
+		useFindAndModify: false,
+	})
+	.then((instance) =>
+		console.log(`Connected to db: ${instance.connections[0].name}`)
+	)
+	.catch((error) => console.log(error));
 
 module.exports = mongoose;
