@@ -6,12 +6,9 @@ const URI = process.env.URI;
 const dbName = 'employee-directory';
 
 const mongoURI =
-	process.env.NODE_ENV === 'production' ? process.env.DB_URL : URI;
-
-// const mongoURI =
-// 	process.env.NODE_ENV === 'production'
-// 		? process.env.DB_URL
-// 		: 'mongodb://localhost/' + dbName;
+	process.env.NODE_ENV === 'production'
+		? process.env.DB_URL === `${URI}`
+		: 'mongodb://localhost/' + dbName;
 
 // add options for the connection as object in second arg, replace local db address with db URI
 mongoose
