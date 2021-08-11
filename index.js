@@ -8,14 +8,12 @@ const {
 	handleErrors,
 	handleValidationErrors,
 } = require('./middleware/custom_errors');
-const port = process.env.PORT || 3111;
+const port = ('port', process.env.PORT || 8000);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use('/', employeeController);
-
-app.set('port', process.env.PORT || 8000);
 
 app.use(handleValidationErrors);
 app.use(handleErrors);
