@@ -22,6 +22,4 @@ mongoose
 	)
 	.catch((error) => console.log(error));
 
-//export connection to use in app elsewhere
-
 module.exports = mongoose;
